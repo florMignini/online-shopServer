@@ -1,23 +1,22 @@
 {
-  "name": "real-state-server",
+  "name": "online-shop-server",
   "version": "1.0.0",
-  "description": "real state web page server side",
+  "description": "online-shop server",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "keywords": [
-    "real-state",
-    "inmobiliaria"
-  ],
   "author": "Florencia Mignini",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.6.7",
     "nodemon": "^2.0.20"
   }
 }
