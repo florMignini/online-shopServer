@@ -24,11 +24,11 @@ const getUsers = async (req, res) => {
   const query = { status: true };
 
   const [totalUsers, users] = await Promise.all([
-    User.countDocuments(query),
+    // User.countDocuments(query),
     User.find(query),
   ]);
 
-  res.json({ totalUsers, users });
+  res.json({ /*  totalUsers, */ users });
 };
 
 const updateUser = async (req, res) => {
