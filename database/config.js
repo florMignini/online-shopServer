@@ -4,7 +4,7 @@ dotenv.config();
 
 export const dbConnection = () => {
   try {
-    mongoose.connect(process.env.DB_URL);
+    mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
     console.log(`DB succesfully connected`);
   } catch (error) {
     console.log(error);
