@@ -4,12 +4,10 @@ dotenv.config();
 const MONGO_URI = process.env.DB_URI;
 console.log(typeof MONGO_URI);
 export const dbConnection = async () => {
-  mongoose.connect(MONGO_URI, { useNewUrlParser: true });
-  mongoose.connection
-    .once("open", function () {
-      console.log("Conection has been made!");
-    })
-    .on("error", function (error) {
-      console.log("Error is: ", error);
-    });
+  try {
+    await mongoose.connect(MONGO_URI, { useNewUrlParser: true });
+    console.log(`DB succesfully connected`);
+  } catch (error) {
+    console.log(error);
+  }
 };
