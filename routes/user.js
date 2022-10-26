@@ -1,4 +1,4 @@
-import { Router } from "express";
+/* import { Router } from "express";
 import { check } from "express-validator";
 import {
   createUser,
@@ -15,11 +15,11 @@ import {
 
 export const userRouter = Router();
 
-userRouter.get("/", getUsers);
+userRouter.get("/"  getUsers);
 
 userRouter.post(
-  "/",
-  [
+  "/"
+    [
     check("name", "please provide a name").notEmpty(),
     check("email").custom(emailValidator),
     check(
@@ -32,8 +32,9 @@ userRouter.post(
   createUser
 );
 
-userRouter.put(
-  "/:id",
+userRouter
+  .put
+    "/:id",
   [
     check("id", "please enter a valid ID").isMongoId(),
     check("id").custom(idValidator),
@@ -41,14 +42,15 @@ userRouter.put(
     validatorMiddleware,
   ],
   updateUser
-);
+  ();
 
 userRouter.delete(
-  "/:id",
-  [
+  "/:id"
+    [
     check("id", "please enter a valid ID").isMongoId(),
     check("id").custom(idValidator),
     validatorMiddleware,
   ],
   deleteUser
 );
+ */

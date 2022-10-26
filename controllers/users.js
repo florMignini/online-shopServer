@@ -1,11 +1,8 @@
 import pkg from "bcryptjs";
-import { deleteModel } from "mongoose";
 const bcryptjs = pkg;
 
-import User from "../models/user.js";
-
 const createUser = async (req, res) => {
-  const { name, email, password, rol } = req.body;
+  /*  const { name, email, password, rol } = req.body;
 
   const newUser = new User({ name, email, password, rol });
 
@@ -17,22 +14,19 @@ const createUser = async (req, res) => {
   res.json({
     msg: "user created",
     newUser,
-  });
+  }); */
 };
 
 const getUsers = async (req, res) => {
-  const query = { status: true };
+  /* const query = { status: true };
 
-  const [totalUsers, users] = await Promise.all([
-    // User.countDocuments(query),
-    User.find(query),
-  ]);
+  const [totalUsers, users] = await Promise.all([User.find(query)]);
 
-  res.json({ /*  totalUsers, */ users });
+  res.json({ users }); */
 };
 
 const updateUser = async (req, res) => {
-  const { id } = req.params;
+  /* const { id } = req.params;
   const { password, google, ...reminder } = req.body;
 
   if (password) {
@@ -47,18 +41,18 @@ const updateUser = async (req, res) => {
   res.json({
     msg: "user succesfully updtaed",
     userUpdated,
-  });
+  }); */
 };
 
 const deleteUser = async (req, res) => {
-  const { id } = req.params;
+  /*  const { id } = req.params;
   //not delete but change the status user
   const userDeleted = await User.findByIdAndUpdate(id, { status: false });
 
   res.json({
     msg: `user succesfully deleted`,
     userDeleted,
-  });
+  }); */
 };
 
 export { createUser, getUsers, updateUser, deleteUser };

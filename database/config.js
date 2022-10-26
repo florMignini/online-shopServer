@@ -1,16 +1,22 @@
-import mongoose from "mongoose";
+import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 dotenv.config();
 
+export const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  "postgres",
+  process.env.USER_PASSWORD,
+  {
+    host: "localhost",
+    dialect: "postgres",
+  }
+);
+
 export const dbConnection = async () => {
   try {
-    await mongoose.connect(
-      (DB_URI =
-        "mongodb+srv://online-shop-user:og5DR7Q1Zej0gx2K@online-shop-server.zplhsya.mongodb.net/?retryWrites=true&w=majority"),
-      { useNewUrlParser: true }
-    );
-    console.log(`DB succesfully connected`);
+    await sequelize.sync();
+    console.log("Connection has been established successfully.");
   } catch (error) {
-    console.log(error);
+    console.error("Unable to connect to the database:", error);
   }
 };

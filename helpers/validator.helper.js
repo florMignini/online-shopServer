@@ -1,4 +1,4 @@
-import Role from "../models/role.js";
+/* import Role from "../models/role.js";
 import User from "../models/user.js";
 
 export const roleValidator = async (rol = "") => {
@@ -21,3 +21,4 @@ export const idValidator = async (id) => {
     throw new Error(`id ${id} does not exist`);
   }
 };
+ */

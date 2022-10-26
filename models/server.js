@@ -1,8 +1,11 @@
 import express from "express";
 import cors from "cors";
 
-import { userRouter } from "../routes/user.js";
+// import { userRouter } from "../routes/user.js";
 import { dbConnection } from "../database/config.js";
+
+//models imports
+import "../models/user.js";
 
 export class Server {
   constructor() {
@@ -31,7 +34,7 @@ export class Server {
 
   routes() {
     //implemet all routes here
-    this.app.use("/users", userRouter);
+    // this.app.use("/users", userRouter);
   }
 
   listen() {

@@ -1,40 +1,28 @@
-import { Schema, model } from "mongoose";
+import { DataTypes } from "sequelize";
+import { sequelize } from "../database/config.js";
 
-const UserSchema = Schema({
+export const User = sequelize.define("users", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoincrement: true,
+  },
   name: {
-    type: String,
-    require: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   email: {
-    type: String,
-    require: true,
+    type: DataTypes.STRING,
+    allowNull: false,
     unique: true,
   },
   password: {
-    type: String,
-    require: true,
-  },
-  image: {
-    type: String,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   rol: {
-    type: String,
-    require: true,
-    enum: ["ADMIN_ROLE", "USER_ROLE"],
-  },
-  status: {
-    type: Boolean,
-    default: true,
-  },
-  google: {
-    type: Boolean,
-    default: false,
+    type: DataTypes.ENUM,
+    values: ["ADMIN_ROLE", "USER_ROLE"],
+    allowNull: false,
   },
 });
-
-//remove password from user response
-UserSchema.methods.toJSON = function () {
-  const { __v, password, ...user } = this.toObject();
-  return user;
-};
-export default model("User", UserSchema);
