@@ -3,14 +3,33 @@ import { User } from "../models/user.js";
 import pkg from "bcryptjs";
 const bcryptjs = pkg;
 
+const getUsers = async (req, res) => {
+  try {
+
+  const totalUsers = await User.findAndCountAll();
+
+  res.json({ totalUsers});
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
+};
+
 const createUser = async (req, res) => {
   const { name, email, password, rol } = req.body;
+
   try {
+    const emailExist = await User.findOne({where: {email}})
+  if(emailExist){
+    return res.status(400).json({
+      msg: `Email ${email} is already registered`
+    })
+  }
+  
   var salt = await bcryptjs.genSalt(10);
   var hash = await bcryptjs.hash(password, salt);
 
   //user creation
-  const newUser = await User.create({
+  const {newUser} = await User.create({
     name,
     email,
     password: hash,
@@ -26,17 +45,6 @@ const createUser = async (req, res) => {
   }
 };
 
-const getUsers = async (req, res) => {
-  try {
-
-  const [totalUsers, users] = await Promise.all([await User.findAll({where : { status: true }}), await User.findAndCountAll({where : { status: true }})
-]);
-
-  res.json({ totalUsers, users });
-  } catch (error) {
-    return res.status(500).json({error: error.message})
-  }
-};
 
 const updateUser = async (req, res) => {
 try {
@@ -67,10 +75,13 @@ const deleteUser = async (req, res) => {
  try {
     const { id } = req.params;
 
-  const userDeleted = await User.destroy(id);
+  const userDeleted = await User.destroy({where:{
+    id
+  }});
 
   res.json({
     msg: `user succesfully deleted`,
+    userDeleted
   });
  } catch (error) {
   return res.status(500).json({error: error.message})
