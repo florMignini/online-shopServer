@@ -1,58 +1,80 @@
+import { User } from "../models/user.js";
+
 import pkg from "bcryptjs";
 const bcryptjs = pkg;
 
 const createUser = async (req, res) => {
-  /*  const { name, email, password, rol } = req.body;
+  const { name, email, password, rol } = req.body;
+  try {
+  var salt = await bcryptjs.genSalt(10);
+  var hash = await bcryptjs.hash(password, salt);
 
-  const newUser = new User({ name, email, password, rol });
-
-  const salt = bcryptjs.genSaltSync(10);
-  newUser.password = bcryptjs.hashSync(password, salt);
-
-  await newUser.save();
+  //user creation
+  const newUser = await User.create({
+    name,
+    email,
+    password: hash,
+    rol
+  });
 
   res.json({
-    msg: "user created",
-    newUser,
-  }); */
+    msg: `user successfully created`,
+    newUser
+  })
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
 };
 
 const getUsers = async (req, res) => {
-  /* const query = { status: true };
+  try {
 
-  const [totalUsers, users] = await Promise.all([User.find(query)]);
+  const [totalUsers, users] = await Promise.all([await User.findAll({where : { status: true }}), await User.findAndCountAll({where : { status: true }})
+]);
 
-  res.json({ users }); */
+  res.json({ totalUsers, users });
+  } catch (error) {
+    return res.status(500).json({error: error.message})
+  }
 };
 
 const updateUser = async (req, res) => {
-  /* const { id } = req.params;
+try {
+    const { id } = req.params;
   const { password, google, ...reminder } = req.body;
+
+  const userUpdated = await User.findByPk(id);
 
   if (password) {
     const salt = bcryptjs.genSaltSync();
-    reminder.password = bcryptjs.hashSync(password, salt);
+    userUpdated.password = bcryptjs.hashSync(password, salt);
   }
-  if (reminder.rol) {
-    User.rol = reminder.rol;
-  }
-  const userUpdated = await User.findByIdAndUpdate(id, reminder);
 
+  if (reminder.rol) {
+    userUpdated.rol = reminder.rol;
+  }
+  userUpdated.save()
   res.json({
-    msg: "user succesfully updtaed",
+    msg: "user succesfully updated",
     userUpdated,
-  }); */
+  });
+} catch (error) {
+  console.log(error)
+}
 };
 
 const deleteUser = async (req, res) => {
-  /*  const { id } = req.params;
-  //not delete but change the status user
-  const userDeleted = await User.findByIdAndUpdate(id, { status: false });
+ try {
+    const { id } = req.params;
+
+  const userDeleted = await User.destroy(id);
 
   res.json({
     msg: `user succesfully deleted`,
-    userDeleted,
-  }); */
+  });
+ } catch (error) {
+  return res.status(500).json({error: error.message})
+ }
 };
 
 export { createUser, getUsers, updateUser, deleteUser };
