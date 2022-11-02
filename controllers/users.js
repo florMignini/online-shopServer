@@ -14,6 +14,8 @@ const getUsers = async (req, res) => {
   }
 };
 
+
+//create user
 const createUser = async (req, res) => {
   const { name, email, password, rol } = req.body;
 
@@ -28,18 +30,22 @@ const createUser = async (req, res) => {
   var salt = await bcryptjs.genSalt(10);
   var hash = await bcryptjs.hash(password, salt);
 
-  //user creation
-  const {newUser} = await User.create({
+
+  const newUser = await User.create({
     name,
     email,
     password: hash,
     rol
   });
 
-  res.json({
+  if(newUser){
+    const {password, ...user} = newUser.dataValues
+    res.json({
     msg: `user successfully created`,
-    newUser
+    user
+
   })
+  }
   } catch (error) {
     return res.status(500).json({error: error.message})
   }
