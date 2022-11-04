@@ -19,17 +19,20 @@ export const loginUser = async(req, res) => {
         }
 
         //password validation
-        const passwordValidate = bcryptjs.compareSync(password, loginUser.password)
+        const passwordValidate = bcryptjs.compareSync(password, emailExist.password)
         if(!passwordValidate){
            return res.status(400).json({msg: `Wrong password provided`})
         }
 
-        const token = jwtGenerator(emailExist.id)
-
-        res.json({
-            loginUser,
-            token
-        })
+        const token = await jwtGenerator(emailExist.id)
+        if(emailExist){
+            console.log(token)
+            const {password, ...userRegistered} = emailExist.dataValues
+            res.json({
+                userRegistered,
+                token
+            })
+        }
 
     } catch (error) {
         console.log(error)

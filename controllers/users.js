@@ -8,7 +8,10 @@ const getUsers = async (req, res) => {
 
   const totalUsers = await User.findAndCountAll();
 
+if(totalUsers){
+
   res.json({ totalUsers});
+}
   } catch (error) {
     return res.status(500).json({error: error.message})
   }
@@ -78,16 +81,22 @@ try {
 };
 
 const deleteUser = async (req, res) => {
+  const authenticatedUser = req.user
+  const { id } = req.params;
  try {
-    const { id } = req.params;
 
+  if(!authenticatedUser){
+    return res.status(401).json({
+      msg: `user does not exist`
+    })
+  }
   const userDeleted = await User.destroy({where:{
     id
   }});
 
   res.json({
     msg: `user succesfully deleted`,
-    userDeleted
+    authenticatedUser
   });
  } catch (error) {
   return res.status(500).json({error: error.message})

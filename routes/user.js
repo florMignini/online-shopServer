@@ -6,6 +6,8 @@ import {
   updateUser,
   deleteUser,
 } from "../controllers/users.js";
+import { validateRole } from "../middlewares/validateRole.js";
+import { validateSession } from "../middlewares/validateSession.js";
 
 export const userRouter = Router();
 
@@ -24,6 +26,7 @@ userRouter
 
 userRouter.delete(
   "/:id",
+  [validateSession, validateRole],
   deleteUser
 );
 
