@@ -1,6 +1,8 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/config.js";
 
+import {Product} from './product.js'
+
 export const User = sequelize.define("users", {
   id: {
     type: DataTypes.INTEGER,
@@ -27,4 +29,14 @@ export const User = sequelize.define("users", {
   },
 });
 
- 
+
+//user - products relation
+ User.hasMany(Product, {
+    foreignKey: "userId",
+    sourceKey: "id"
+ })
+
+ Product.belongsTo(User, {
+  foreignKey: "userId",
+    targetKey: "id"
+ })

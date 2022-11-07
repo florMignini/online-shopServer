@@ -3,6 +3,7 @@ import cors from "cors";
 
 import { userRouter } from "../routes/user.js";
 import { authRouter } from "../routes/auth.js";
+import { categoriesRouter} from "../routes/categories.js"
 import { dbConnection } from "../database/config.js";
 
 //models imports
@@ -37,6 +38,7 @@ export class Server {
     //implemet all routes here
     this.app.use("/users", userRouter);
     this.app.use("/auth", authRouter);
+    this.app.use("/categories", categoriesRouter)
   }
 
   listen() {
