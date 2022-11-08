@@ -1,9 +1,9 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../database/config.js";
+const {DataTypes} = require('sequelize')
+const { sequelize } = require("../database/config.js");
 
-import {Product} from './product.js'
+const Product = require('./product.js')
 
-export const User = sequelize.define("users", {
+ const User = sequelize.define("users", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -40,3 +40,5 @@ export const User = sequelize.define("users", {
   foreignKey: "userId",
     targetKey: "id"
  })
+
+ module.exports = User

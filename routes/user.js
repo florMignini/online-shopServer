@@ -1,15 +1,15 @@
-import { Router } from "express";
+const { Router } = require("express");
 
-import {
+const {
   createUser,
   getUsers,
   updateUser,
   deleteUser,
-} from "../controllers/users.js";
-import { validateRole } from "../middlewares/validateRole.js";
-import { validateSession } from "../middlewares/validateSession.js";
+} = require("../controllers/users.js");
+const { validateRole } = require("../middlewares/validateRole.js");
+const { validateSession } = require("../middlewares/validateSession.js");
 
-export const userRouter = Router();
+const userRouter = Router();
 
 userRouter.get("/",  getUsers);
 
@@ -30,3 +30,4 @@ userRouter.delete(
   deleteUser
 );
 
+module.exports = userRouter

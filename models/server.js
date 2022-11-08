@@ -1,15 +1,11 @@
-import express from "express";
-import cors from "cors";
+const  express = require("express");
+const  cors = require("cors");
 
-import { userRouter } from "../routes/user.js";
-import { authRouter } from "../routes/auth.js";
-import { categoriesRouter} from "../routes/categories.js"
-import { dbConnection } from "../database/config.js";
 
-//models imports
-import "../models/user.js";
+const {authRouter, categoriesRouter, userRouter}  = require ("../routes")
+const { dbConnection } = require("../database/config.js");
 
-export class Server {
+ class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
@@ -48,3 +44,4 @@ export class Server {
     });
   }
 }
+module.exports = Server

@@ -1,9 +1,9 @@
-import {  DataTypes } from "sequelize";
+const {  DataTypes } = require("sequelize");
 
-import { sequelize } from "../database/config.js";
-import { Category } from "./category.js";
+const { sequelize } = require("../database/config.js");
+const  Category  = require("./category.js");
 
-export const Product = sequelize.define("products",{
+ const Product = sequelize.define("products",{
     id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -33,3 +33,5 @@ Category.belongsTo(Product, {
    foreignKey: "ProductId",
     targetKey: "id"
 })
+
+module.exports = Product

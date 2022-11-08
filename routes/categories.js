@@ -1,3 +1,5 @@
-import { Router } from "express";
+const { Router } = require("express");
 
-export const categoriesRouter = Router();
+const categoriesRouter = Router();
+
+module.exports = categoriesRouter

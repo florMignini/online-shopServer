@@ -1,12 +1,12 @@
 
-import { User } from "../models/user.js"
+const { User } = require("../models/user.js")
 
-import pkg from "bcryptjs";
-const bcryptjs = pkg;
+const bcryptjs = require("bcryptjs");
 
-import { jwtGenerator } from "../helpers/jwtGenerator.js";
 
-export const loginUser = async(req, res) => {
+const { jwtGenerator } = require("../helpers/jwtGenerator.js");
+
+ const loginUser = async(req, res) => {
 
 
     const {email, password} = req.body
@@ -41,3 +41,5 @@ export const loginUser = async(req, res) => {
         })
     }
 }
+
+module.exports = {loginUser}

@@ -1,7 +1,6 @@
-import { User } from "../models/user.js";
+const User = require("../models/user.js");
 
-import pkg from "bcryptjs";
-const bcryptjs = pkg;
+const bcryptjs = require("bcryptjs");
 
 const getUsers = async (req, res) => {
   try {
