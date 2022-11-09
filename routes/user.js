@@ -6,8 +6,8 @@ const {
   updateUser,
   deleteUser,
 } = require("../controllers/users.js");
-const { validateRole } = require("../middlewares/validateRole.js");
-const { validateSession } = require("../middlewares/validateSession.js");
+const { validateRole, validateSession } = require("../middlewares");
+
 
 const userRouter = Router();
 

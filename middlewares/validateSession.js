@@ -1,7 +1,7 @@
-import jwt from 'jsonwebtoken'
-import {User} from '../models/user.js'
+const jwt = require('jsonwebtoken')
+const {User} = require('../models/user.js')
 
-export const validateSession = async(req, res, next) => {
+const validateSession = async(req, res, next) => {
 
 
     const token = req.header('auth-token')
@@ -27,3 +27,5 @@ export const validateSession = async(req, res, next) => {
         })
     }
 }
+
+module.exports = validateSession

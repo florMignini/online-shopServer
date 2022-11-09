@@ -1,7 +1,7 @@
-const {Category } = require('./category.js')
-const {Product } = require('./product')
-const {User } = require('./user.js')
-const {Server } = require('./server.js')
+const Category  = require('./category.js')
+const Product  = require('./product.js')
+const User  = require('./user.js')
+const Server  = require('./server.js')
 
 
 module.exports= {

@@ -20,6 +20,11 @@ const  Category  = require("./category.js");
 price:{
     type: DataTypes.INTEGER,
     allowNull: false
+},
+available:{
+  type: DataTypes.BOOLEAN,
+  defaultValue: true,
+    allowNull: false,
 }
 
 })

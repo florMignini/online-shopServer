@@ -14,7 +14,7 @@ require('dotenv').config();
 
  const dbConnection = async () => {
   try {
-    await sequelize.sync({alter:false});
+    await sequelize.sync({alter: false});
     console.log("Connection has been established successfully.");
   } catch (error) {
     console.error("Unable to connect to the database:", error);

@@ -1,7 +1,7 @@
  const  authRouter = require('./auth')
  const  categoriesRouter = require('./categories')
- const  userRouter = require('./auth')
- const  productRouter = require('./auth')
+ const  userRouter = require('./user')
+ const  productRouter = require('./product')
 
  module.exports = {
     authRouter,

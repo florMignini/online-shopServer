@@ -2,6 +2,8 @@ const User = require("../models/user.js");
 
 const bcryptjs = require("bcryptjs");
 
+
+//get all users
 const getUsers = async (req, res) => {
   try {
 
@@ -102,4 +104,4 @@ const deleteUser = async (req, res) => {
  }
 };
 
-export { createUser, getUsers, updateUser, deleteUser };
+module.exports = { createUser, getUsers, updateUser, deleteUser };

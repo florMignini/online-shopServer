@@ -1,7 +1,7 @@
 
 
 
-export const validateRole = (req, res, next) => {
+ const validateRole = (req, res, next) => {
 
 const {rol, name} = req.user
     if(!req.user){
@@ -19,3 +19,5 @@ const {rol, name} = req.user
 
     next()
 }
+
+module.exports = validateRole
