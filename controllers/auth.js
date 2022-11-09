@@ -1,10 +1,10 @@
 
-const { User } = require("../models/user.js")
+const  User  = require("../models/user.js")
 
 const bcryptjs = require("bcryptjs");
 
 
-const { jwtGenerator } = require("../helpers/jwtGenerator.js");
+const jwtGenerator  = require("../helpers/jwtGenerator.js");
 
  const loginUser = async(req, res) => {
 
@@ -26,7 +26,6 @@ const { jwtGenerator } = require("../helpers/jwtGenerator.js");
 
         const token = await jwtGenerator(emailExist.id)
         if(emailExist){
-            console.log(token)
             const {password, ...userRegistered} = emailExist.dataValues
             res.json({
                 userRegistered,

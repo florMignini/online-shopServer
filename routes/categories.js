@@ -1,13 +1,35 @@
 const { Router } = require("express");
-const {createCategory} = require('../controllers/category');
+const {createCategory, getCategories, updateCategory, deleteCategory, getCategory} = require('../controllers/category');
 const { validateRole, validateSession } = require("../middlewares");
 
 const categoriesRouter = Router();
 
 categoriesRouter.post(
   "/",
-  [validateRole, validateSession],
+  [validateSession, validateRole],
   createCategory,
+);
+
+categoriesRouter.get(
+  "/",
+  getCategories
+);
+
+categoriesRouter.get(
+  "/:id",
+  getCategory
+);
+
+categoriesRouter.put(
+  "/:id",
+  [validateSession, validateRole],
+  updateCategory,
+);
+
+categoriesRouter.delete(
+  "/:id",
+  [validateSession, validateRole],
+  deleteCategory,
 );
 
 module.exports = categoriesRouter

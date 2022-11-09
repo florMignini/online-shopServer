@@ -10,10 +10,9 @@ const {rol, name} = req.user
         })
     }
 
-    console.log(rol, name)
     if(rol !== 'ADMIN_ROLE'){
         return res.status(500).json({
-            msg: `User ${name} is not allow to perform this operation`
+            msg: `Only ADMIN user are allow to perform this operation`
         })
     }
 

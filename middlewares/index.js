@@ -3,6 +3,6 @@ const validateSession = require('./validateSession')
 
 
 module.exports = {
-    validateRole,
-    validateSession
+    validateSession,
+    validateRole
 }
