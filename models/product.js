@@ -17,25 +17,26 @@ const  Category  = require("./category.js");
     type: DataTypes.STRING,
     allowNull: false
   },
-price:{
-    type: DataTypes.INTEGER,
-    allowNull: false
-},
-available:{
-  type: DataTypes.BOOLEAN,
-  defaultValue: true,
-    allowNull: false,
-}
+  price:{
+      type: DataTypes.NUMBER,
+      defaultValue: 0,
+      allowNull: false
+  },
+  available:{
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+      allowNull: false,
+  }
 
 })
 
 //Product-Category relation
-Product.hasOne(Category, {
-  foreignKey: "ProductId",
+Category.hasMany(Product, {
+  foreignKey: "categoryId",
     sourceKey: "id"
 })
-Category.belongsTo(Product, {
-   foreignKey: "ProductId",
+Product.belongsTo(Category, {
+   foreignKey: "categoryId",
     targetKey: "id"
 })
 

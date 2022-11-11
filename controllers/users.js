@@ -58,7 +58,7 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
 try {
-    const { id } = req.params;
+    const { id } = req.param;
   const { password, google, ...reminder } = req.body;
 
   const userUpdated = await User.findByPk(id);

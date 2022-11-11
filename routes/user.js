@@ -19,10 +19,8 @@ userRouter.post(
 );
 
 userRouter
-  .put
-    "/:id",
-  updateUser
-  ();
+  .put("/:id",
+  updateUser);
 
 userRouter.delete(
   "/:id",
