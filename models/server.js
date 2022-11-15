@@ -2,7 +2,7 @@ const  express = require("express");
 const  cors = require("cors");
 
 
-const {authRouter, categoriesRouter, userRouter, productRouter}  = require ("../routes")
+const {authRouter, categoriesRouter, userRouter, productRouter, searchRouter}  = require ("../routes")
 const { dbConnection } = require("../database/config.js");
 
  class Server {
@@ -32,10 +32,11 @@ const { dbConnection } = require("../database/config.js");
 
   routes() {
     //implemet all routes here
-    this.app.use("/users", userRouter);
     this.app.use("/auth", authRouter);
     this.app.use("/categories", categoriesRouter)
     this.app.use("/products", productRouter)
+    this.app.use("/search", searchRouter)
+    this.app.use("/users", userRouter);
   }
 
   listen() {
